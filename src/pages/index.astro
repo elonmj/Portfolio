@@ -1,0 +1,191 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+import BlogCard from "../components/ui/BlogCard.astro";
+import { getCollection } from "astro:content";
+
+// Get latest blog posts
+const allPosts = await getCollection("blog");
+const latestPosts = allPosts
+	.filter((post) => !post.data.draft)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 3);
+---
+
+<Layout
+	title="Portfolio - Votre Nom"
+	description="Portfolio personnel d'un développeur web passionné. Découvrez mes projets, articles et compétences."
+>
+	<Navigation />
+
+	<main class="flex-1">
+		<!-- Hero Section -->
+		<section class="container py-16 md:py-24">
+			<div class="max-w-4xl mx-auto text-center">
+				<div class="mb-6">
+					<span
+						class="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-medium"
+					>
+						👋 Bienvenue sur mon portfolio
+					</span>
+				</div>
+
+				<h1 class="heading-1 mb-6">
+					Développeur Web
+					<span class="text-gradient">Passionné</span>
+				</h1>
+
+				<p class="body-large mb-8 max-w-2xl mx-auto">
+					Je conçois et développe des expériences web modernes,
+					performantes et accessibles. Spécialisé en React, TypeScript
+					et technologies modernes.
+				</p>
+
+				<div class="flex flex-col sm:flex-row gap-4 justify-center">
+					<a href="/blog" class="btn-primary"> Voir mes articles </a>
+					<a href="/projects" class="btn-secondary">
+						Découvrir mes projets
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- About Section -->
+		<section class="bg-gray-50 dark:bg-gray-900/50">
+			<div class="container py-16">
+				<div class="max-w-4xl mx-auto">
+					<div class="grid md:grid-cols-2 gap-12 items-center">
+						<div>
+							<h2 class="heading-2 mb-6">À propos de moi</h2>
+							<div class="space-y-4 body-text">
+								<p>
+									Développeur web avec une passion pour créer
+									des solutions élégantes et efficaces. J'aime
+									explorer de nouvelles technologies et
+									partager mes connaissances.
+								</p>
+								<p>
+									Actuellement spécialisé dans l'écosystème
+									JavaScript moderne, avec une expertise
+									particulière en React, TypeScript et
+									Node.js.
+								</p>
+							</div>
+
+							<div class="mt-8">
+								<h3 class="heading-3 mb-4">
+									Compétences principales
+								</h3>
+								<div class="flex flex-wrap gap-2">
+									{
+										[
+											"JavaScript",
+											"TypeScript",
+											"React",
+											"Node.js",
+											"Astro",
+											"Tailwind CSS",
+											"Git",
+										].map((skill) => (
+											<span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium">
+												{skill}
+											</span>
+										))
+									}
+								</div>
+							</div>
+						</div>
+
+						<div class="relative">
+							<div
+								class="aspect-square bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-1"
+							>
+								<div
+									class="w-full h-full bg-white dark:bg-gray-800 rounded-xl flex items-center justify-center"
+								>
+									<div class="text-6xl">👨‍💻</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Latest Blog Posts -->
+		<section class="container py-16">
+			<div class="mb-12 text-center">
+				<div class="flex items-center justify-center mb-4">
+					<span class="text-2xl mr-2">📝</span>
+					<h2 class="heading-2">Derniers Articles</h2>
+				</div>
+				<p class="body-large max-w-2xl mx-auto">
+					Découvrez mes réflexions et tutoriels sur le développement
+					web moderne
+				</p>
+			</div>
+
+			{
+				latestPosts.length > 0 ? (
+					<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 [&>*:first-child]:md:col-span-2">
+						{latestPosts.map((post, index) => (
+							<BlogCard
+								title={post.data.title}
+								description={post.data.description}
+								pubDate={post.data.pubDate}
+								image={post.data.image}
+								tags={post.data.tags}
+								category={post.data.category}
+								readTime={post.data.readTime}
+								href={`/blog/${post.slug}`}
+								featured={index === 0}
+							/>
+						))}
+					</div>
+				) : (
+					<div class="text-center py-12">
+						<p class="body-text">
+							Aucun article disponible pour le moment.
+						</p>
+					</div>
+				)
+			}
+
+			<div class="text-center mt-12">
+				<a href="/blog" class="btn-primary"> Voir tous les articles </a>
+			</div>
+		</section>
+
+		<!-- CTA Section -->
+		<section class="bg-gradient-to-r from-blue-600 to-purple-600">
+			<div class="container py-16">
+				<div class="max-w-3xl mx-auto text-center text-white">
+					<h2 class="text-3xl md:text-4xl font-bold mb-6">
+						Travaillons ensemble
+					</h2>
+					<p class="text-xl mb-8 opacity-90">
+						Vous avez un projet en tête ? N'hésitez pas à me
+						contacter pour en discuter.
+					</p>
+					<div class="flex flex-col sm:flex-row gap-4 justify-center">
+						<a
+							href="mailto:votre.email@example.com"
+							class="btn bg-white text-blue-600 hover:bg-gray-100"
+						>
+							Me contacter
+						</a>
+						<a
+							href="/projects"
+							class="btn border-2 border-white text-white hover:bg-white hover:text-blue-600"
+						>
+							Voir mes projets
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<Footer />
+</Layout>

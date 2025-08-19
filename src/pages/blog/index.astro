@@ -1,0 +1,214 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navigation from "../../components/Navigation.astro";
+import Footer from "../../components/Footer.astro";
+import BlogCard from "../../components/ui/BlogCard.astro";
+import { getCollection } from "astro:content";
+
+// Get all blog posts
+const allPosts = await getCollection("blog");
+const publishedPosts = allPosts
+    .filter((post) => !post.data.draft)
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Get unique categories and tags
+const categories = [
+    ...new Set(publishedPosts.map((post) => post.data.category)),
+];
+const allTags = publishedPosts.flatMap((post) => post.data.tags);
+const popularTags = [...new Set(allTags)]
+    .map((tag) => ({
+        name: tag,
+        count: allTags.filter((t) => t === tag).length,
+    }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 10);
+---
+
+<Layout
+    title="Blog - Votre Nom"
+    description="Articles et réflexions sur le développement web moderne, les nouvelles technologies et bonnes pratiques."
+>
+    <Navigation />
+
+    <main class="flex-1">
+        <!-- Hero Section -->
+        <section class="container py-16">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="mb-6">
+                    <span
+                        class="inline-flex items-center px-4 py-2 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 text-sm font-medium"
+                    >
+                        📖 Blog
+                    </span>
+                </div>
+
+                <h1 class="heading-1 mb-6">
+                    Mes <span class="text-gradient">Réflexions</span>
+                </h1>
+
+                <p class="body-large mb-8 max-w-2xl mx-auto">
+                    Découvrez mes pensées personnelles et mes analyses
+                    approfondies sur le développement web, les nouvelles
+                    technologies et les tendances du secteur.
+                </p>
+            </div>
+        </section>
+
+        <!-- Stats & Filter -->
+        <section class="bg-gray-50 dark:bg-gray-900/50">
+            <div class="container py-8">
+                <div
+                    class="flex flex-col md:flex-row justify-between items-center gap-6"
+                >
+                    <div class="flex items-center space-x-6">
+                        <div class="text-center">
+                            <div
+                                class="text-2xl font-bold text-blue-600 dark:text-blue-400"
+                            >
+                                {publishedPosts.length}
+                            </div>
+                            <div
+                                class="text-sm text-gray-600 dark:text-gray-400"
+                            >
+                                Articles
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div
+                                class="text-2xl font-bold text-purple-600 dark:text-purple-400"
+                            >
+                                {categories.length}
+                            </div>
+                            <div
+                                class="text-sm text-gray-600 dark:text-gray-400"
+                            >
+                                Catégories
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div
+                                class="text-2xl font-bold text-green-600 dark:text-green-400"
+                            >
+                                {popularTags.length}
+                            </div>
+                            <div
+                                class="text-sm text-gray-600 dark:text-gray-400"
+                            >
+                                Tags
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Search will be added later -->
+                    <div class="flex items-center space-x-4">
+                        <button class="btn-secondary text-sm">
+                            <svg
+                                class="w-4 h-4 mr-2"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+                                ></path>
+                            </svg>
+                            Filtrer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Posts Grid -->
+        <section class="container py-16">
+            {
+                publishedPosts.length > 0 ? (
+                    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                        {publishedPosts.map((post, index) => (
+                            <BlogCard
+                                title={post.data.title}
+                                description={post.data.description}
+                                pubDate={post.data.pubDate}
+                                image={post.data.image}
+                                tags={post.data.tags}
+                                category={post.data.category}
+                                readTime={post.data.readTime}
+                                href={`/blog/${post.slug}`}
+                                featured={index === 0}
+                            />
+                        ))}
+                    </div>
+                ) : (
+                    <div class="text-center py-16">
+                        <div class="text-6xl mb-4">📝</div>
+                        <h2 class="text-2xl font-bold mb-4">
+                            Aucun article disponible
+                        </h2>
+                        <p class="body-text mb-8">
+                            Les premiers articles arrivent bientôt !
+                        </p>
+                    </div>
+                )
+            }
+        </section>
+
+        <!-- Popular Tags -->
+        {
+            popularTags.length > 0 && (
+                <section class="bg-gray-50 dark:bg-gray-900/50">
+                    <div class="container py-16">
+                        <h2 class="heading-2 text-center mb-12">
+                            Tags Populaires
+                        </h2>
+                        <div class="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+                            {popularTags.map((tag) => (
+                                <a
+                                    href={`/blog/tags/${tag.name}`}
+                                    class="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full hover:border-blue-500 dark:hover:border-blue-400 transition-colors group"
+                                >
+                                    <span class="text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                                        #{tag.name}
+                                    </span>
+                                    <span class="ml-2 text-xs text-gray-500 dark:text-gray-400">
+                                        {tag.count}
+                                    </span>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )
+        }
+
+        <!-- Newsletter CTA -->
+        <section class="container py-16">
+            <div class="max-w-2xl mx-auto text-center card p-8">
+                <h2 class="heading-2 mb-4">Restez informé</h2>
+                <p class="body-text mb-6">
+                    Recevez les derniers articles directement dans votre boîte
+                    mail
+                </p>
+                <form class="flex flex-col sm:flex-row gap-4">
+                    <input
+                        type="email"
+                        placeholder="votre@email.com"
+                        class="flex-1 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        required
+                    />
+                    <button type="submit" class="btn-primary whitespace-nowrap">
+                        S'abonner
+                    </button>
+                </form>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">
+                    Pas de spam, désabonnement possible à tout moment
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <Footer />
+</Layout>
