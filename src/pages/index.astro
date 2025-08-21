@@ -14,8 +14,8 @@ const latestPosts = allPosts
 ---
 
 <Layout
-	title="Portfolio - Votre Nom"
-	description="Portfolio personnel d'un développeur web passionné. Découvrez mes projets, articles et compétences."
+	title="Léonel VODOUNOU - Génie Mathématique & IA"
+	description="Portfolio de Léonel VODOUNOU, spécialisé en Modélisation Aléatoire, Statistique et Deep Learning. Étudiant en 5ème année de Génie Mathématiques passionné par la recherche en IA."
 >
 	<Navigation />
 
@@ -27,25 +27,48 @@ const latestPosts = allPosts
 					<span
 						class="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-medium"
 					>
-						👋 Bienvenue sur mon portfolio
+						🧠 Génie Mathématique & Recherche en IA
 					</span>
 				</div>
 
-				<h1 class="heading-1 mb-6">
-					Développeur Web
-					<span class="text-gradient">Passionné</span>
+				<h1 class="heading-1 mb-4">
+					<span
+						class="block text-2xl md:text-3xl lg:text-4xl font-normal text-gray-600 dark:text-gray-300 mb-2"
+					>
+						Léonel VODOUNOU
+					</span>
+					<span class="text-gradient">Génie Mathématique</span> &
+					<span class="text-gradient">Recherche en IA</span>
 				</h1>
 
+				<p
+					class="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-6 max-w-3xl mx-auto"
+				>
+					Spécialisé en Modélisation Aléatoire, Statistique et Deep
+					Learning
+				</p>
+
 				<p class="body-large mb-8 max-w-2xl mx-auto">
-					Je conçois et développe des expériences web modernes,
-					performantes et accessibles. Spécialisé en React, TypeScript
-					et technologies modernes.
+					Ma passion est de faire le pont entre les mathématiques
+					fondamentales et l'ingénierie de l'IA. Je cherche à
+					améliorer les performances des modèles et à approfondir les
+					fondements théoriques qui les sous-tendent, avec un intérêt
+					particulier pour les grands modèles de langage (LLMs).
 				</p>
 
 				<div class="flex flex-col sm:flex-row gap-4 justify-center">
-					<a href="/blog" class="btn-primary"> Voir mes articles </a>
-					<a href="/projects" class="btn-secondary">
+					<a href="/projects" class="btn-primary">
 						Découvrir mes projets
+					</a>
+					<a href="/blog" class="btn-secondary">
+						Lire mes articles
+					</a>
+					<a
+						href="/cv-leonel-vodounou.pdf"
+						target="_blank"
+						class="btn-secondary"
+					>
+						📄 Télécharger mon CV
 					</a>
 				</div>
 			</div>
@@ -60,33 +83,69 @@ const latestPosts = allPosts
 							<h2 class="heading-2 mb-6">À propos de moi</h2>
 							<div class="space-y-4 body-text">
 								<p>
-									Développeur web avec une passion pour créer
-									des solutions élégantes et efficaces. J'aime
-									explorer de nouvelles technologies et
-									partager mes connaissances.
+									Étudiant en 5ème année de Génie
+									Mathématiques, je suis activement à la
+									recherche d'un Master spécialisé en IA ou
+									d'une opportunité en école d'ingénieurs
+									(avec bourse), ainsi que de stages de
+									recherche.
 								</p>
 								<p>
-									Actuellement spécialisé dans l'écosystème
-									JavaScript moderne, avec une expertise
-									particulière en React, TypeScript et
-									Node.js.
+									Ma formation mathématique rigoureuse me
+									permet d'aborder l'IA non pas comme une
+									collection d'outils, mais comme un ensemble
+									de systèmes dynamiques régis par des
+									principes probabilistes et statistiques.
+								</p>
+							</div>
+
+							<!-- Mon Approche -->
+							<div
+								class="mt-8 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-l-4 border-blue-500"
+							>
+								<h3
+									class="heading-3 mb-4 text-blue-900 dark:text-blue-100"
+								>
+									Mon Approche
+								</h3>
+								<p
+									class="body-text text-blue-800 dark:text-blue-200"
+								>
+									Issu d'une formation en génie mathématique,
+									je ne vois pas les modèles d'IA comme des
+									boîtes noires, mais comme des systèmes
+									dynamiques régis par des principes
+									probabilistes. Mon approche consiste à
+									utiliser cette rigueur pour construire des
+									modèles non seulement performants, mais
+									aussi plus robustes, interprétables et
+									efficaces. Je suis convaincu que les
+									prochaines grandes avancées en IA viendront
+									d'une synthèse plus profonde entre la
+									théorie mathématique et l'ingénierie à
+									grande échelle.
 								</p>
 							</div>
 
 							<div class="mt-8">
 								<h3 class="heading-3 mb-4">
-									Compétences principales
+									Domaines d'expertise
 								</h3>
 								<div class="flex flex-wrap gap-2">
 									{
 										[
-											"JavaScript",
-											"TypeScript",
-											"React",
-											"Node.js",
-											"Astro",
-											"Tailwind CSS",
-											"Git",
+											"LLMs & NLP",
+											"Deep Learning",
+											"Computer Vision",
+											"Modélisation Aléatoire",
+											"Statistiques pour le ML",
+											"MLOps",
+											"Interprétabilité",
+											"Modélisation Stochastique",
+											"PyTorch",
+											"TensorFlow",
+											"Python",
+											"R",
 										].map((skill) => (
 											<span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium">
 												{skill}
@@ -104,7 +163,7 @@ const latestPosts = allPosts
 								<div
 									class="w-full h-full bg-white dark:bg-gray-800 rounded-xl flex items-center justify-center"
 								>
-									<div class="text-6xl">👨‍💻</div>
+									<div class="text-6xl">🧮</div>
 								</div>
 							</div>
 						</div>
@@ -117,12 +176,12 @@ const latestPosts = allPosts
 		<section class="container py-16">
 			<div class="mb-12 text-center">
 				<div class="flex items-center justify-center mb-4">
-					<span class="text-2xl mr-2">📝</span>
-					<h2 class="heading-2">Derniers Articles</h2>
+					<span class="text-2xl mr-2">🧠</span>
+					<h2 class="heading-2">Recherche & Réflexions</h2>
 				</div>
 				<p class="body-large max-w-2xl mx-auto">
-					Découvrez mes réflexions et tutoriels sur le développement
-					web moderne
+					Explorez mes analyses sur l'IA, les mathématiques appliquées
+					et les dernières avancées en recherche
 				</p>
 			</div>
 
