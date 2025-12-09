@@ -1,19 +1,103 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
-/* Custom utilities and components */
-@layer utilities {
-    .text-gradient {
-        @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+/* Force dark mode to work with class strategy */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: "Manrope", system-ui, sans-serif;
+    --font-serif: "Playfair Display", Georgia, serif;
+
+    --color-quartz: #032d29;
+    --color-quartz-light: #f3f3f1;
+    --color-quartz-dark: #011a18;
+    --color-quartz-accent: #d4b887;
+
+    /* Semantic Colors */
+    --color-bg-primary: var(--bg-primary);
+    --color-text-primary: var(--text-primary);
+    --color-bg-secondary: var(--bg-secondary);
+    --color-text-secondary: var(--text-secondary);
+    --color-border-primary: var(--border-primary);
+}
+
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+    /* Light Mode (Default) */
+    --bg-primary: #f3f3f1;
+    /* Quartz Light */
+    --text-primary: #032d29;
+    /* Quartz */
+    --bg-secondary: #ffffff;
+    --text-secondary: #011a18;
+    /* Quartz Dark */
+    --border-primary: rgba(3, 45, 41, 0.1);
+    /* Quartz with opacity */
+}
+
+.dark {
+    /* Dark Mode */
+    --bg-primary: #000000;
+    /* Black */
+    --text-primary: #f3f3f1;
+    /* Quartz Light */
+    --bg-secondary: #0a0a0a;
+    /* Dark Gray */
+    --text-secondary: #d4b887;
+    /* Quartz Accent */
+    --border-primary: rgba(243, 243, 241, 0.1);
+    /* Quartz Light with opacity */
+}
+
+@layer base {
+    html {
+        @apply scroll-smooth;
     }
 
-    .glass {
-        @apply backdrop-blur-sm bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10;
+    body {
+        @apply bg-bg-primary text-text-primary antialiased transition-colors duration-300;
+    }
+
+    /* Dark Mode Gradient Background */
+    :global(.dark) body {
+        background-image: linear-gradient(to bottom, #032d29 0%, #000000 400px);
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-serif font-medium tracking-tight;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        @apply bg-bg-primary;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply bg-text-primary/20 rounded-full hover:bg-text-primary/40 transition-colors;
+    }
+
+    /* Selection */
+    ::selection {
+        @apply bg-text-primary text-bg-primary;
     }
 }
 
 @layer components {
-    .container {
-        @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+    .container-custom {
+        @apply mx-auto max-w-6xl px-4 sm:px-6 lg:px-8;
     }
 
     .btn {
@@ -21,56 +105,14 @@
     }
 
     .btn-primary {
-        @apply inline-flex items-center justify-center font-medium transition-all duration-200 rounded-lg bg-blue-600 hover:bg-blue-700 text-white px-6 py-3;
+        @apply inline-flex items-center justify-center font-medium transition-all duration-200 rounded-lg bg-text-primary text-bg-primary hover:opacity-90 px-6 py-3;
     }
 
     .btn-secondary {
-        @apply inline-flex items-center justify-center font-medium transition-all duration-200 rounded-lg bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-900 dark:text-white px-6 py-3;
-    }
-
-    .card {
-        @apply bg-white dark:bg-gray-800/50 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 transition-all duration-200;
-    }
-
-    .heading-1 {
-        @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
-    }
-
-    .heading-2 {
-        @apply text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight;
-    }
-
-    .heading-3 {
-        @apply text-xl md:text-2xl font-semibold;
-    }
-
-    .body-large {
-        @apply text-lg text-gray-600 dark:text-gray-300;
-    }
-
-    .body-text {
-        @apply text-base text-gray-600 dark:text-gray-300;
+        @apply inline-flex items-center justify-center font-medium transition-all duration-200 rounded-lg bg-bg-secondary border border-border-primary hover:border-text-primary/30 text-text-primary px-6 py-3;
     }
 }
 
-/* Smooth scroll behavior */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    @apply bg-gray-100 dark:bg-gray-800;
-}
-
-::-webkit-scrollbar-thumb {
-    @apply bg-gray-300 dark:bg-gray-600 rounded-full;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    @apply bg-gray-400 dark:bg-gray-500;
+.text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-text-primary to-text-primary/70;
 }

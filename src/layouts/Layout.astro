@@ -1,5 +1,8 @@
 ---
 import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Starfield from "../components/Starfield.astro";
 
 export interface Props {
     title: string;
@@ -10,7 +13,7 @@ export interface Props {
 
 const {
     title,
-    description = "Portfolio personnel - Développeur web passionné",
+    description = "Léonel VODOUNOU - Génie Mathématique & IA",
     image = "/images/og-image.jpg",
     type = "website",
 } = Astro.props;
@@ -48,66 +51,41 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
         <meta property="twitter:image" content={new URL(image, Astro.url)} />
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
-            rel="stylesheet"
-        />
-
         <!-- Theme Script -->
         <script is:inline>
-            // Theme initialization
-            const getThemePreference = () => {
-                if (
-                    typeof localStorage !== "undefined" &&
-                    localStorage.getItem("theme")
-                ) {
-                    return localStorage.getItem("theme");
+            const theme = (() => {
+                if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+                    return localStorage.getItem('theme');
                 }
-                return window.matchMedia("(prefers-color-scheme: dark)").matches
-                    ? "dark"
-                    : "light";
-            };
-
-            const isDark = getThemePreference() === "dark";
-            document.documentElement.classList[isDark ? "add" : "remove"](
-                "dark",
-            );
+                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    return 'dark';
+                }
+                return 'light';
+            })();
+        
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        
+            window.localStorage.setItem('theme', theme);
         </script>
     </head>
 
-    <body
-        class="bg-white dark:bg-[#0a0910] text-stone-950 dark:text-white font-manrope antialiased transition-colors duration-300"
-    >
-        <slot />
+    <body class="antialiased flex flex-col min-h-screen relative">
+        <!-- Starfield Background (Dark Mode Only) -->
+        <Starfield />
+        
+        <!-- Content -->
+        <div class="relative z-10 flex flex-col min-h-screen">
+            <Header />
+            
+            <main class="flex-grow pt-20">
+                <slot />
+            </main>
 
-        <!-- Theme Toggle Script -->
-        <script>
-            // Theme toggle functionality
-            function toggleTheme() {
-                const element = document.documentElement;
-                element.classList.toggle("dark");
-
-                const isDark = element.classList.contains("dark");
-                localStorage.setItem("theme", isDark ? "dark" : "light");
-            }
-
-            // Attach to theme toggle buttons
-            document.addEventListener("DOMContentLoaded", () => {
-                const themeToggle = document.getElementById("theme-toggle");
-                if (themeToggle) {
-                    themeToggle.addEventListener("click", toggleTheme);
-                }
-            });
-        </script>
+            <Footer />
+        </div>
     </body>
 </html>
-
-<style>
-    html {
-        font-family: "Manrope", system-ui, sans-serif;
-    }
-</style>

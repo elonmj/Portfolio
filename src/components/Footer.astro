@@ -1,16 +1,77 @@
 ---
-// Footer component
 const currentYear = new Date().getFullYear();
 ---
 
-<footer
-    class="border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-[#0a0910]"
->
-    <div class="container py-8">
-        <div class="text-center">
-            <p class="text-gray-600 dark:text-gray-400">
-                © {currentYear} Votre Nom - Tous droits réservés
-            </p>
+<footer class="bg-quartz text-quartz-light py-12 mt-20">
+  <div class="container-custom">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="font-serif text-xl font-bold mb-4">Léonel VODOUNOU</h3>
+        <p class="text-quartz-light/70 text-sm max-w-xs">
+          Génie Mathématique & Intelligence Artificielle.
+          Explorant les frontières entre théorie et application.
+        </p>
+      </div>
+      
+      <div>
+        <h4 class="font-bold mb-4 text-sm uppercase tracking-wider text-quartz-light/50">Navigation</h4>
+        <ul class="space-y-2 text-sm text-quartz-light/70">
+          <li><a href="/#about" class="hover:text-white transition-colors">À Propos</a></li>
+          <li><a href="/projects" class="hover:text-white transition-colors">Projets</a></li>
+          <li><a href="/blog" class="hover:text-white transition-colors">Blog</a></li>
+          <li><a href="/lab" class="hover:text-white transition-colors">Laboratoire</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold mb-4 text-sm uppercase tracking-wider text-quartz-light/50">Connect</h4>
+        <div class="flex gap-4">
+          <!-- GitHub -->
+          <a 
+            href="https://github.com/vleonel-junior" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="text-quartz-light/70 hover:text-white transition-colors"
+            aria-label="GitHub"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+          </a>
+          
+          <!-- LinkedIn -->
+          <a 
+            href="https://www.linkedin.com/in/léonel-junior-vodounou-7864b0210" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="text-quartz-light/70 hover:text-white transition-colors"
+            aria-label="LinkedIn"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+          
+          <!-- Email -->
+          <a 
+            href="mailto:vleoneljunior@gmail.com" 
+            class="text-quartz-light/70 hover:text-white transition-colors"
+            aria-label="Email"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+          </a>
         </div>
+      </div>
     </div>
+    
+    <div class="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-quartz-light/50">
+      <p>&copy; {currentYear} Léonel VODOUNOU. All rights reserved.</p>
+      <p>Built with Astro & Tailwind</p>
+    </div>
+  </div>
 </footer>

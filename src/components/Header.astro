@@ -1,0 +1,90 @@
+---
+const navItems = [
+  { name: 'About', href: '/#about' },
+  { name: 'Projects', href: '/projects' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Lab', href: '/lab' },
+];
+---
+
+<header class="fixed top-0 w-full z-50 bg-quartz/80 backdrop-blur-md border-b border-border-primary transition-colors duration-300">
+  <div class="container-custom h-16 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3">
+      <img src="/logo.jpg" alt="Logo" class="h-10 w-10 object-cover rounded-full" />
+      <span class="text-lg font-serif font-bold tracking-tight text-quartz-light">Léonel S. J. VODOUNOU</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8">
+      {navItems.map(item => {
+        // Handle anchor links (e.g., /#about) - active when on homepage
+        const itemPath = item.href.startsWith('/#') ? '/' : item.href;
+        const isActive = Astro.url.pathname === itemPath || 
+                        (itemPath !== '/' && Astro.url.pathname.startsWith(itemPath));
+        return (
+          <a 
+            href={item.href}
+            class:list={[
+              "text-sm font-medium transition-colors",
+              isActive ? "text-white font-bold" : "text-quartz-light/60 hover:text-white"
+            ]}
+          >
+            {item.name}
+          </a>
+        );
+      })}
+      
+      <!-- Theme Toggle -->
+      <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/10 transition-colors" aria-label="Toggle Theme">
+        <!-- Sun Icon -->
+        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-quartz-light" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+        </svg>
+        <!-- Moon Icon -->
+        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-quartz-light" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+        </svg>
+      </button>
+
+      <a 
+        href="/cv.pdf" 
+        class="text-sm font-medium px-4 py-2 bg-quartz-light text-quartz rounded-full hover:opacity-90 transition-opacity"
+      >
+        Resume
+      </a>
+    </nav>
+
+    <button class="md:hidden text-quartz-light">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+      </svg>
+    </button>
+  </div>
+</header>
+
+<script>
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const lightIcon = document.getElementById('theme-toggle-light-icon');
+  const darkIcon = document.getElementById('theme-toggle-dark-icon');
+
+  // Initial Icon State
+  if (document.documentElement.classList.contains('dark')) {
+    darkIcon?.classList.remove('hidden');
+  } else {
+    lightIcon?.classList.remove('hidden');
+  }
+
+  themeToggleBtn?.addEventListener('click', () => {
+    // Toggle icons
+    lightIcon?.classList.toggle('hidden');
+    darkIcon?.classList.toggle('hidden');
+
+    // Toggle theme
+    if (document.documentElement.classList.contains('dark')) {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+</script>
