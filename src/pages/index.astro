@@ -19,27 +19,30 @@ const latestPosts = allPosts
 	<section class="py-24 md:py-32">
 		<div class="container-custom">
 			<div class="max-w-4xl">
-				<div class="inline-block mb-6 px-3 py-1 rounded-full border border-quartz/20 dark:border-quartz-light/20 text-xs font-medium uppercase tracking-wider text-quartz/60 dark:text-quartz-light/60">
+				<div
+					class="inline-block mb-6 px-3 py-1 rounded-full border border-quartz/20 dark:border-quartz-light/20 text-xs font-medium uppercase tracking-wider text-quartz/60 dark:text-quartz-light/60"
+				>
 					Génie Mathématique & Recherche en IA
 				</div>
-				
-				<h1 class="text-5xl md:text-7xl font-serif font-medium text-quartz dark:text-quartz-light mb-8 leading-[1.1]">
-					Combler le fossé entre <br/>
-					<span class="italic text-quartz/60 dark:text-quartz-light/70">théorie mathématique</span> et <br/>
-					ingénierie de l'IA.
+
+				<h1
+					class="text-5xl md:text-7xl font-serif font-medium text-quartz dark:text-quartz-light mb-8 leading-[1.1] min-h-[3.3em]"
+				>
+					<span id="typing-text" class="typing-cursor"></span>
 				</h1>
 
-				<p class="text-xl md:text-2xl text-quartz/70 dark:text-quartz-light/80 max-w-2xl leading-relaxed mb-12">
-					Je construis des systèmes d'IA robustes et interprétables en m'appuyant sur des fondements probabilistes solides.
+				<p
+					class="text-xl md:text-2xl text-quartz/70 dark:text-quartz-light/80 max-w-2xl leading-relaxed mb-12 reveal-on-scroll stagger-1"
+				>
+					Je construis des systèmes d'IA robustes et interprétables en
+					m'appuyant sur des fondements probabilistes solides.
 				</p>
 
-				<div class="flex flex-wrap gap-4">
+				<div class="flex flex-wrap gap-4 reveal-on-scroll stagger-2">
 					<a href="/projects" class="btn-primary">
 						Voir les projets
 					</a>
-					<a href="/blog" class="btn-secondary">
-						Lire le blog
-					</a>
+					<a href="/blog" class="btn-secondary"> Lire le blog </a>
 				</div>
 			</div>
 		</div>
@@ -49,33 +52,66 @@ const latestPosts = allPosts
 	<section class="py-20 bg-quartz text-quartz-light">
 		<div class="container-custom">
 			<div class="grid md:grid-cols-2 gap-16 items-start">
-				<div>
-					<h2 class="text-3xl md:text-4xl font-serif mb-6">Mon Approche</h2>
-					<p class="text-lg text-quartz-light/80 leading-relaxed mb-6">
-						Issu d'une formation en génie mathématique, je ne vois pas les modèles d'IA comme des boîtes noires, mais comme des systèmes dynamiques régis par des principes probabilistes.
+				<div class="reveal-on-scroll">
+					<h2 class="text-3xl md:text-4xl font-serif mb-6">
+						Mon Approche
+					</h2>
+					<p
+						class="text-lg text-quartz-light/80 leading-relaxed mb-6"
+					>
+						Issu d'une formation en génie mathématique, je ne vois
+						pas les modèles d'IA comme des boîtes noires, mais comme
+						des systèmes dynamiques régis par des principes
+						probabilistes.
 					</p>
 					<p class="text-lg text-quartz-light/80 leading-relaxed">
-						Mon objectif est d'utiliser cette rigueur pour construire des modèles non seulement performants, mais aussi plus robustes, interprétables et efficaces.
+						Mon objectif est d'utiliser cette rigueur pour
+						construire des modèles non seulement performants, mais
+						aussi plus robustes, interprétables et efficaces.
 					</p>
 				</div>
-				
+
 				<div class="grid grid-cols-2 gap-8">
 					<div>
-						<h3 class="font-serif text-xl mb-4 text-quartz-accent">Expertise</h3>
+						<h3
+							class="font-serif text-xl mb-4 text-quartz-accent reveal-on-scroll"
+						>
+							Expertise
+						</h3>
 						<ul class="space-y-2 text-quartz-light/70">
-							<li>Deep Learning</li>
-							<li>LLMs & NLP</li>
-							<li>Computer Vision</li>
-							<li>Modélisation Stochastique</li>
+							<li class="reveal-on-scroll stagger-1">
+								Deep Learning
+							</li>
+							<li class="reveal-on-scroll stagger-2">
+								LLMs & NLP
+							</li>
+							<li class="reveal-on-scroll stagger-3">
+								Computer Vision
+							</li>
+							<li class="reveal-on-scroll stagger-4">
+								Modélisation Stochastique
+							</li>
 						</ul>
 					</div>
 					<div>
-						<h3 class="font-serif text-xl mb-4 text-quartz-accent">Outils</h3>
+						<h3
+							class="font-serif text-xl mb-4 text-quartz-accent reveal-on-scroll"
+						>
+							Outils
+						</h3>
 						<ul class="space-y-2 text-quartz-light/70">
-							<li>PyTorch / TensorFlow</li>
-							<li>Python / R</li>
-							<li>Docker / MLOps</li>
-							<li>Hugging Face</li>
+							<li class="reveal-on-scroll stagger-1">
+								PyTorch / TensorFlow
+							</li>
+							<li class="reveal-on-scroll stagger-2">
+								Python / R
+							</li>
+							<li class="reveal-on-scroll stagger-3">
+								Docker / MLOps
+							</li>
+							<li class="reveal-on-scroll stagger-4">
+								Hugging Face
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -87,38 +123,119 @@ const latestPosts = allPosts
 	<section class="py-24">
 		<div class="container-custom">
 			<div class="flex justify-between items-end mb-12">
-				<h2 class="text-3xl md:text-4xl font-serif text-quartz dark:text-quartz-light">Recherche & Articles</h2>
-				<a href="/blog" class="hidden md:inline-block text-sm font-medium text-quartz/60 dark:text-quartz-light/60 hover:text-quartz dark:hover:text-quartz-light transition-colors">
+				<h2
+					class="text-3xl md:text-4xl font-serif text-quartz dark:text-quartz-light"
+				>
+					Recherche & Articles
+				</h2>
+				<a
+					href="/blog"
+					class="hidden md:inline-block text-sm font-medium text-quartz/60 dark:text-quartz-light/60 hover:text-quartz dark:hover:text-quartz-light transition-colors"
+				>
 					Voir tout →
 				</a>
 			</div>
 
-			{latestPosts.length > 0 ? (
-				<div class="grid md:grid-cols-3 gap-8">
-					{latestPosts.map((post) => (
-						<BlogCard
-							title={post.data.title}
-							description={post.data.description}
-							pubDate={post.data.pubDate}
-							image={post.data.image}
-							tags={post.data.tags}
-							category={post.data.category}
-							readTime={post.data.readTime}
-							href={`/blog/${post.slug}`}
-						/>
-					))}
-				</div>
-			) : (
-				<div class="text-center py-12 border border-dashed border-quartz/20 dark:border-quartz-light/20 rounded-lg">
-					<p class="text-quartz/50 dark:text-quartz-light/50">Aucun article pour le moment.</p>
-				</div>
-			)}
-			
+			{
+				latestPosts.length > 0 ? (
+					<div class="grid md:grid-cols-3 gap-8 reveal-on-scroll">
+						{latestPosts.map((post) => (
+							<div class="hover:-translate-y-1 transition-transform duration-300">
+								<BlogCard
+									title={post.data.title}
+									description={post.data.description}
+									pubDate={post.data.pubDate}
+									image={post.data.image}
+									tags={post.data.tags}
+									category={post.data.category}
+									readTime={post.data.readTime}
+									href={`/blog/${post.slug}`}
+								/>
+							</div>
+						))}
+					</div>
+				) : (
+					<div class="text-center py-12 border border-dashed border-quartz/20 dark:border-quartz-light/20 rounded-lg">
+						<p class="text-quartz/50 dark:text-quartz-light/50">
+							Aucun article pour le moment.
+						</p>
+					</div>
+				)
+			}
+
 			<div class="mt-8 md:hidden text-center">
-				<a href="/blog" class="text-sm font-medium text-quartz/60 dark:text-quartz-light/60 hover:text-quartz dark:hover:text-quartz-light transition-colors">
+				<a
+					href="/blog"
+					class="text-sm font-medium text-quartz/60 dark:text-quartz-light/60 hover:text-quartz dark:hover:text-quartz-light transition-colors"
+				>
 					Voir tout →
 				</a>
 			</div>
 		</div>
 	</section>
 </Layout>
+
+<script>
+	const textPart1 = "Combler le fossé entre ";
+	const textPart2 = "théorie mathématique";
+	const textPart3 = " et ";
+	const textPart4 = "ingénierie de l'IA.";
+
+	const typingElement = document.getElementById("typing-text");
+	let charIndex = 0;
+
+	// Complex text structure simulation by typing raw HTML carefully or simplifying
+	// To keep it simple but visually correct with the design:
+
+	async function typeWriter() {
+		if (!typingElement) return;
+
+		const fullHTML = `Combler le fossé entre <br/><span class="italic text-quartz/60 dark:text-quartz-light/70">théorie mathématique</span> et <br/>ingénierie de l'IA.`;
+
+		// Trick: Use an invisible clone or just type plain text?
+		// Typing HTML tags is hard.
+		// Alternative: Type segments.
+
+		// Let's do a purely visual typing effect that replaces content once typing is "done" or type text only.
+		// Actually, for the best effect on the hero H1 which has specific styling (italic, breaks),
+		// we should probably just fade in the complex parts or type them segment by segment.
+
+		// Let's implement a segment-based typer.
+
+		const segments = [
+			{ text: "Combler le fossé entre ", class: "" },
+			{ text: "\n", isBreak: true }, // Represent BR
+			{
+				text: "théorie mathématique",
+				class: "italic text-quartz/60 dark:text-quartz-light/70",
+			},
+			{ text: " et ", class: "" },
+			{ text: "\n", isBreak: true },
+			{ text: "ingénierie de l'IA.", class: "" },
+		];
+
+		typingElement.innerHTML = "";
+
+		for (const segment of segments) {
+			if (segment.isBreak) {
+				typingElement.innerHTML += "<br/>";
+				continue;
+			}
+
+			const span = document.createElement("span");
+			if (segment.class) span.className = segment.class;
+			typingElement.appendChild(span);
+
+			for (let i = 0; i < segment.text.length; i++) {
+				span.textContent += segment.text.charAt(i);
+				await new Promise((r) => setTimeout(r, 50)); // Typing speed
+			}
+		}
+
+		// Remove cursor after done
+		typingElement.classList.remove("typing-cursor");
+	}
+
+	// Start typing when page loads
+	document.addEventListener("DOMContentLoaded", typeWriter);
+</script>
