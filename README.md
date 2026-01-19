@@ -12,6 +12,9 @@ Un portfolio moderne et performant développé avec Astro.js et Tailwind CSS.
 - 📱 **Mobile-first** design
 - 🚀 **Déploiement automatique** sur GitHub Pages
 
+## 🌐 Démo en ligne
+[https://elonmj.github.io/Portfolio/](https://elonmj.github.io/Portfolio/)
+
 ## 🛠 Technologies
 
 - [Astro.js](https://astro.build/) - Framework de génération de sites statiques
